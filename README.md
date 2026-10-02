@@ -42,15 +42,6 @@ $$
 \boxed{e=d\sqrt{2(1-\cos\theta)}}
 $$
 
-o equivalentemente:
-
-$$
-\boxed{
-e_B=2d_B\sin(10^\circ)
-}
-$$
-(es una expresión trigonométricamente equivalente donde alfa es el margen angular)
-
 ---
 
 # 4. Aplicación al Bucket
