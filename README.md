@@ -30,23 +30,23 @@ Se considera:
 
 La geometría corresponde a dos posiciones posibles del target separadas angularmente por un determinado ángulo.
 
-Para un ángulo incluido `θ`, la distancia entre ambas posiciones posibles se obtiene mediante la **ley de cosenos**:
+Para un ángulo incluido `α`, la distancia entre ambas posiciones posibles se obtiene mediante la **ley de cosenos**:
 
 $$
-e = \sqrt{d^2+d^2-2d^2\cos(\theta)}
+e = \sqrt{d^2+d^2-2d^2\cos(\alpha)}
 $$
 
 Por tanto:
 
 $$
-\boxed{e=d\sqrt{2(1-\cos\theta)}}
+\boxed{e=d\sqrt{2(1-\cos\alpha)}}
 $$
 
 O equivalentemente:
 
 $$
 \boxed{
-e_i=2d_i\sin(\theta)
+e_i=2d_i\sin(\alpha)
 }
 $$
 
