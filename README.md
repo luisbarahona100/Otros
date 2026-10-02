@@ -46,9 +46,10 @@ o equivalentemente:
 
 $$
 \boxed{
-e_B=d_B\sqrt{2(1-\cos20^\circ)}
+e_B=2d_B\sin(10^\circ)
 }
 $$
+(es una expresión trigonométricamente equivalente donde alfa es el margen angular)
 
 ---
 
