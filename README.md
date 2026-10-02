@@ -42,153 +42,17 @@ $$
 \boxed{e=d\sqrt{2(1-\cos\theta)}}
 $$
 
----
-
-# 4. Aplicación al Bucket
-
-El caso principal considerado corresponde a la **falla del inclinómetro del Bucket**.
-
-Normalmente, el inclinómetro del Bucket proporciona información necesaria para determinar la orientación de la cuchara y, consecuentemente, la posición del target.
-
-Si el inclinómetro del Bucket deja de proporcionar información válida, puede estimarse un **error de posicionamiento** a partir de:
-
-$$
-d_B = \text{distancia entre el inclinómetro del Bucket y el target}
-$$
-
-Con un margen angular de:
-
-$$
-\pm10^\circ
-$$
-
-el error estimado sería:
+O equivalentemente:
 
 $$
 \boxed{
-e_B=2d_B\sin(10^\circ)
+e_i=2d_i\sin(\theta)
 }
 $$
-
-o equivalentemente:
-
-$$
-\boxed{
-e_B=d_B\sqrt{2(1-\cos20^\circ)}
-}
-$$
-
-Por tanto:
-
-$$
-\boxed{
-e_B\approx0.3473d_B
-}
-$$
-
-Este valor representa una **estimación geométrica del error de posicionamiento del target**, no una medición directa del error real del sistema.
 
 ---
 
-# 6. Extensión a falla del Stick
-
-El mismo principio geométrico puede extenderse al caso en que falle el inclinómetro del **Stick**.
-
-En este caso:
-
-$$
-d_S=
-\text{distancia entre la ubicación del inclinómetro del Stick y el target}
-$$
-
-Con un margen de ±10°:
-
-$$
-\boxed{
-e_S=2d_S\sin(10^\circ)
-}
-$$
-
-Por tanto:
-
-$$
-\boxed{
-e_S\approx0.3473d_S
-}
-$$
-
-La lógica sería:
-
-```text
-Falla del inclinómetro Stick
-          │
-          ▼
-Determinar distancia
-Stick → Target
-          │
-          ▼
-Aplicar incertidumbre angular
-          │
-          ▼
-Calcular error estimado
-          │
-          ▼
-Estimar incertidumbre del Target
-```
-
-Debido a que el target se encuentra más alejado del punto de referencia del Stick que del Bucket, el valor de `d` puede ser diferente y, consecuentemente, también lo será el error estimado.
-
----
-
-# 7. Extensión a falla del Boom
-
-El mismo procedimiento puede aplicarse si falla el inclinómetro del **Boom**.
-
-En este caso:
-
-$$
-d_{Bo}=
-\text{distancia entre la ubicación del inclinómetro del Boom y el target}
-$$
-
-Para ±10°:
-
-$$
-\boxed{
-e_{Bo}=2d_{Bo}\sin(10^\circ)
-}
-$$
-
-o:
-
-$$
-\boxed{
-e_{Bo}\approx0.3473d_{Bo}
-}
-$$
-
-La lógica es:
-
-```text
-Falla del inclinómetro Boom
-          │
-          ▼
-Determinar distancia
-Boom → Target
-          │
-          ▼
-Aplicar incertidumbre angular
-          │
-          ▼
-Calcular error estimado
-          │
-          ▼
-Estimar incertidumbre del Target
-```
-
----
-
-# 8. Modelo generalizado
+# 3. Modelo generalizado
 
 El modelo puede generalizarse independientemente del elemento cuyo inclinómetro haya fallado.
 
@@ -243,56 +107,7 @@ $$
 | Boom                   |   Inclinómetro Boom → Target |      `eBo = 0.3473 dBo` |
 
 La principal diferencia entre los casos es, por tanto, **la distancia desde el punto cuyo ángulo deja de conocerse hasta el target**.
-
----
-
-# 9. Interpretación geométrica
-
-La estimación puede visualizarse como una incertidumbre angular alrededor del punto donde se encuentra el inclinómetro.
-
-Si el inclinómetro deja de proporcionar la orientación exacta, el target puede encontrarse dentro de un conjunto de posiciones posibles determinado por:
-
-1. La distancia `d` entre el inclinómetro y el target.
-2. El margen angular permitido `±α`.
-
-Para un único margen angular, las dos posiciones extremas del target están separadas por una cuerda:
-
-$$
-e=2d\sin(\alpha)
-$$
-
 Por ello, **a mayor distancia `d`, mayor incertidumbre de posición para una misma incertidumbre angular**.
-
-Ejemplo conceptual:
-
-```text
-                 Target (+α)
-                     ●
-                    /
-                   / d
-                  /
-                 O  ← Inclinómetro
-                  \
-                   \ d
-                    \
-                     ●
-                 Target (-α)
-
-                  <--- e --->
-```
-
-Donde:
-
-* `O` = ubicación del inclinómetro.
-* `d` = distancia inclinómetro → target.
-* `+α / -α` = límites de incertidumbre angular.
-* `e` = separación entre las posiciones extremas estimadas del target.
-
----
-
-# 10. Consideraciones sobre el alcance del modelo
-
-Esta estimación representa únicamente el **componente de error asociado a la incertidumbre angular considerada**.
 
 No necesariamente incluye otros errores del sistema, por ejemplo:
 
@@ -310,46 +125,10 @@ No necesariamente incluye otros errores del sistema, por ejemplo:
 
 Por ello, `Bucket Stimation` debería documentarse como un **indicador de incertidumbre estimada asociado a la pérdida del inclinómetro**, y no necesariamente como el error total del sistema HPGPS.
 
----
-
-# 11. Posible extensión del concepto
-
-El modelo permite establecer una lógica de degradación del sistema:
-
-```text
-                    Inclinómetros
-                         │
-          ┌──────────────┼──────────────┐
-          │              │              │
-        Boom           Stick          Bucket
-          │              │              │
-          └──────────────┼──────────────┘
-                         │
-                  Estado de sensores
-                         │
-             ┌───────────┴───────────┐
-             │                       │
-          Todos OK              Alguno falla
-             │                       │
-             ▼                       ▼
-       Target normal          Calcular d
-                                     │
-                                     ▼
-                              Aplicar ±α
-                                     │
-                                     ▼
-                              Calcular e
-                                     │
-                                     ▼
-                           Indicador de
-                           incertidumbre
-```
-
-Este mecanismo permitiría que el sistema no trate necesariamente la pérdida de un inclinómetro como una pérdida inmediata de la capacidad de posicionamiento, sino que pueda **cuantificar la incertidumbre adicional introducida por dicha pérdida**.
 
 ---
 
-# 12. Referencias revisadas
+# 4. Referencias revisadas
 
 > **Espacio destinado a incorporar las referencias técnicas, documentación, código fuente, procedimientos de calibración y evidencias utilizadas para validar este modelo.**
 
@@ -381,29 +160,3 @@ Este mecanismo permitiría que el sistema no trate necesariamente la pérdida de
 * [Manual de Usuario IRIS](https://msspe-my.sharepoint.com/:w:/g/personal/edwin_cabanillas_ms4m_com/IQDyF2GEIQMLSqj3vK4vhh7-AfiRYgAyDbZDwOPo4vQ9Q4k?e=jtnIWd&utm_source=chatgpt.com)
 
 ---
-
-# 13. Observación pendiente de validación
-
-La ecuación geométrica permite obtener una **estimación teórica del error angular**, pero antes de utilizar `Bucket Stimation` como indicador operativo del sistema debería verificarse:
-
-1. Qué representa exactamente el parámetro `Bucket Stimation` en el código actual de **ControlBox**.
-2. Si el valor configurable `10°` representa **±10°** o un **ángulo total de 10°**.
-3. Si el error mostrado por el sistema está expresado en **metros, centímetros, porcentaje u otra magnitud**.
-4. Si `d` corresponde a una distancia geométrica 3D o a una distancia proyectada.
-5. Si el cálculo se realiza únicamente cuando falla el Bucket o también ante fallas de Stick/Boom.
-6. Cómo se combina este error con el error propio del GNSS/HPGPS y con los errores de calibración.
-7. Qué comportamiento debe tener el indicador cuando fallan simultáneamente varios inclinómetros.
-
-**Punto especialmente importante:** si el requerimiento funcional establece que el usuario configura `±10°`, la ecuación geométricamente consistente es:
-
-$$
-\boxed{\text{Error estimado}=2d\sin(10^\circ)=0.3473d}
-$$
-
-mientras que:
-
-$$
-d\sqrt{2(1-\cos10^\circ)}
-$$
-
-corresponde a un **ángulo incluido de 10°**, no a un margen de ±10°. Esta distinción debería quedar explícita en la especificación de `Bucket Stimation`.
