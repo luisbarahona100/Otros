@@ -52,7 +52,7 @@ $$
 
 ---
 
-# 3. Modelo generalizado
+# 3. Modelo generalizado propuesto por Luis Malpartida
 
 El modelo puede generalizarse independientemente del elemento cuyo inclinómetro haya fallado.
 
