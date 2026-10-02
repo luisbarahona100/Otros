@@ -42,6 +42,14 @@ $$
 \boxed{e=d\sqrt{2(1-\cos\theta)}}
 $$
 
+o equivalentemente:
+
+$$
+\boxed{
+e_B=d_B\sqrt{2(1-\cos20^\circ)}
+}
+$$
+
 ---
 
 # 4. Aplicación al Bucket
