@@ -90,42 +90,6 @@ Este valor representa una **estimación geométrica del error de posicionamiento
 
 ---
 
-# 5. Parámetro `Bucket Stimation`
-
-Se propone utilizar el resultado de esta estimación como base para un parámetro denominado:
-
-```text
-Bucket Stimation
-```
-
-El objetivo del parámetro es proporcionar una indicación del **grado de incertidumbre de la posición calculada del target cuando la información del inclinómetro del Bucket no está disponible**.
-
-Conceptualmente:
-
-```text
-Inclinómetro Bucket OK
-        │
-        ├── Sí → posición del target calculada normalmente
-        │
-        └── No
-             │
-             ▼
-       Determinar d
-             │
-             ▼
-       Aplicar margen angular
-             │
-             ▼
-       Calcular error estimado e
-             │
-             ▼
-       Bucket Stimation
-```
-
-El valor de `Bucket Stimation` debería interpretarse como una **estimación de incertidumbre de posicionamiento**, y no como una medición adicional proveniente de un sensor.
-
----
-
 # 6. Extensión a falla del Stick
 
 El mismo principio geométrico puede extenderse al caso en que falle el inclinómetro del **Stick**.
